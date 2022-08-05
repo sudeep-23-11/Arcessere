@@ -1,0 +1,28 @@
+#weather {
+    height: 688px;
+    width: 100%;
+    border-style: solid;
+    border-color: red;
+}
+#weather-form {
+    border-style: solid;
+    height: 20%;
+    width: 20%;
+    margin-top: 5%;
+    margin-left: 40%;
+}
+#weather-form-input {
+    margin-top: 7%;
+    margin-left: 19%;
+}
+#weather-form-button {
+    height: 40px;
+    width: 80px;
+    margin-top: 7%;
+    margin-left: 38%;
+    background-color: #0D6EFD;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 25px;
+    border-color: #0D6EFD;
+}
