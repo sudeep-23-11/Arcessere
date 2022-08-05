@@ -1,28 +1,38 @@
 #weather {
     height: 688px;
     width: 100%;
-    border-style: solid;
-    border-color: red;
+    display: flex;
+    flex-direction: row;
+
+    border: 3px solid red;
 }
-#weather-form {
-    border-style: solid;
-    height: 20%;
+#weather-middle {
+    height: 60%;
     width: 20%;
-    margin-top: 5%;
+
+    border: 3px solid red;
+}
+#weather-input {
+    width: 60%;
+    margin-top: 20%;
+    margin-left: 20%;
+}
+#weather-button {
+    width: 20%;
+    margin-top: 10%;
     margin-left: 40%;
-}
-#weather-form-input {
-    margin-top: 7%;
-    margin-left: 19%;
-}
-#weather-form-button {
-    height: 40px;
-    width: 80px;
-    margin-top: 7%;
-    margin-left: 38%;
     background-color: #0D6EFD;
     color: #FFFFFF;
     font-weight: bold;
-    border-radius: 25px;
     border-color: #0D6EFD;
+}
+.weather-heading {
+    margin-top: 20%;
+    text-align: center;
+}
+.weather-pane {
+    height: 60%;
+    width: 40%;
+
+    border: 3px solid red;
 }

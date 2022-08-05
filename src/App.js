@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar';
-import Weather from './components/Weather';
+import Weather from './components/Weather/Weather';
 
 function App() {
   return (
