@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios';
 
-import '../../style/weather-style.css';
-import LeftPane from './LeftPane';
-import RightPane from './RightPane';
+import '../style/weather-style.css';
+import LeftPane from './Weather components/LeftPane';
+import RightPane from './Weather components/RightPane';
 
 export default function Weather() {
 
