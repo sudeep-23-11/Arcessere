@@ -15,8 +15,9 @@ export default function Weather() {
     }
     
     const [data, setData] = useState({
-        latitute: 0,
-        longitute: 0,
+        latitute: 0, longitute: 0, description: "",
+        temperature: 0, pressure: 0, humidity: 0,
+        visibility: 0, windSpeed: 0, clouds: 0,
     });
     let clickButton = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`)
@@ -24,6 +25,13 @@ export default function Weather() {
                 setData({
                     latitute: response.data.coord.lat,
                     longitute: response.data.coord.lon,
+                    description: response.data.weather[0].description,
+                    temperature: response.data.main.temp,
+                    pressure: response.data.main.pressure,
+                    humidity: response.data.main.humidity,
+                    visibility: response.data.visibility,
+                    windSpeed: response.data.wind.speed,
+                    clouds: response.data.clouds.all,
                 })
             })
     }
@@ -32,12 +40,12 @@ export default function Weather() {
         <div id="weather">
             <LeftPane data={data}/>
             
-            <div id='weather-middle'>
-                <input id='weather-input' type="text" value={city} onChange={changeCity}/>
-                <button id='weather-button' type="submit" onClick={clickButton}>Go</button>
-
-                <h3 className='weather-heading'>{data.latitute} &#176;N</h3>
-                <h3 className='weather-heading'>{data.longitute} &#176;E</h3>
+            <div id='weather-center'>
+                <input type="text" placeholder='Enter location' autoFocus value={city} onChange={changeCity}/>
+                <button type="submit" onClick={clickButton}>Go</button>
+                <h2>{data.latitute} &#176;N latitute</h2>
+                <h2>{data.longitute} &#176;E longitute</h2>
+                <h2>{data.description}</h2>
             </div>
 
             <RightPane data={data}/>
