@@ -39,7 +39,6 @@ export default function Weather() {
     return (
         <div id="weather">
             <LeftPane data={data}/>
-            
             <div id='weather-center'>
                 <input type="text" placeholder='Enter city' autoFocus value={city} onChange={changeCity}/>
                 <button type="submit" onClick={clickButton}>Go</button>
@@ -47,7 +46,6 @@ export default function Weather() {
                 <h2>{data.longitute} &#176;E longitute</h2>
                 <h2>{data.description}</h2>
             </div>
-
             <RightPane data={data}/>
         </div>
     )
