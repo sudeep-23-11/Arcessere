@@ -1,6 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-import './App.css';
 import Home from './components/Home';
 import Weather from './components/Weather';
 import Movies from './components/Movies';

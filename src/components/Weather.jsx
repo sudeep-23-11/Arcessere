@@ -15,9 +15,9 @@ export default function Weather() {
     }
     
     const [data, setData] = useState({
-        latitute: 0, longitute: 0, description: "",
-        temperature: 0, pressure: 0, humidity: 0,
-        visibility: 0, windSpeed: 0, clouds: 0,
+        latitute: "", longitute: "", description: "",
+        temperature: "", pressure: "", humidity: "",
+        visibility: "", windSpeed: "", clouds: "",
     });
     let clickButton = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`)
@@ -41,7 +41,7 @@ export default function Weather() {
             <LeftPane data={data}/>
             
             <div id='weather-center'>
-                <input type="text" placeholder='Enter location' autoFocus value={city} onChange={changeCity}/>
+                <input type="text" placeholder='Enter city' autoFocus value={city} onChange={changeCity}/>
                 <button type="submit" onClick={clickButton}>Go</button>
                 <h2>{data.latitute} &#176;N latitute</h2>
                 <h2>{data.longitute} &#176;E longitute</h2>

@@ -1,0 +1,7 @@
+#movies {
+    height: 688px;
+    width: 100%;
+    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
+    display: flex;
+    flex-direction: row;
+}
