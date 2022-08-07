@@ -1,5 +1,5 @@
 #movies {
-    height: 688px;
+    height: 92.5vh;
     width: 100%;
     background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
     display: flex;
@@ -34,6 +34,7 @@
 }
 #movies-down h2 {
     margin-top: 5%;
+    margin-left: 2.5%;
 }
 
 #movies-right {
@@ -44,12 +45,16 @@
     height: 70%;
     width: 45%;
     margin-top: 5%;
-    margin-right: 5%;
+    margin-right: 2.5%;
     float: right;
 }
 #movies-right h2 {
     margin-top: 5%;
+    margin-left: 2.5%;
 }
 #movies-right h4 {
     margin-top: 15%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    text-align: center;
 }

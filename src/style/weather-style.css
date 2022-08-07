@@ -1,4 +1,5 @@
 #weather {
+    height: 92.5vh;
     width: 100%;
     background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
     display: flex;
@@ -6,31 +7,32 @@
 }
 
 #weather-center {
-    width: 50%;
+    width: 40%;
 }
 #weather-center input {
     height: 5%;
-    width: 30%;
+    width: 38%;
     margin-top: 10%;
-    margin-left: 35%;
+    margin-left: 31%;
 }
 #weather-center button {
     height: 5%;
-    width: 10%;
+    width: 12%;
     margin-top: 5%;
-    margin-left: 45%;
+    margin-left: 44%;
     background-color: #0D6EFD;
     color: #FFFFFF;
     font-weight: bold;
     border-color: #0D6EFD;
 }
 #weather-center h2 {
-    margin-top: 10%;
+    margin-top: 15%;
     text-align: center;
 }
 
 .weather-side {
-    width: 25%;
+    height: 100%;
+    width: 30%;
 }
 
 #weather-widget {
@@ -39,17 +41,16 @@
     border-color: #FFFFFF;
 }
 #weather-widget img {
-    height: 25%;
-    width: 25%;
+    height: 30%;
+    width: 30%;
     margin-top: 5%;
-    margin-left: 5%;
-}
-#weather-widget h2 {
-    margin-top: 5%;
-    margin-right: 5%;
-    float: right;
 }
 #weather-widget h1 {
-    margin-top: 4%;
+    margin-top: 7.5%;
+    margin-right: 7.5%;
+    float: right;
+}
+#weather-widget h2 {
     text-align: center;
+    margin-top: 10%;
 }

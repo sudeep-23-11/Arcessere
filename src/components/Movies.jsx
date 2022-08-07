@@ -17,7 +17,7 @@ export default function Movies() {
     const [data, setData] = useState({
         genre: "", director: "", writer: "", actors: "",
         releasedDate: "", runtime: "", imdb: "", rottenTomatoes: "", boxOffice: "",
-        plot: "", poster: "movies-poster.jpg",
+        plot: "", poster: "images/movies.jpg",
     });
     let clickButton = () => {
         axios.get(`http://www.omdbapi.com/?apikey=${APIKey}&t=${movie}`)

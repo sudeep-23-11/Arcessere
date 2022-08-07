@@ -1,0 +1,24 @@
+#home {
+    height: 92.5vh;
+    width: 100%;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#home-widget {
+    height: 100%;
+    width: 33.33%;
+}
+#home-widget img {
+    height: 70%;
+    width: 90%;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+#home-widget h4 {
+    margin-top: 10%;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
