@@ -17,7 +17,7 @@ export default function News() {
         total: 0, articles: [],
     });
     useEffect(() => {
-        axios.get(`https://newsapi.org/v2/top-headlines?pageSize=100&country=in&category=general&apiKey=${APIKey}`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${APIKey}`)
             .then((response) => {
                 setData({
                     total: response.data.totalResults,
@@ -26,7 +26,7 @@ export default function News() {
             })
     }, [])
     let clickButton = () => {
-        axios.get(`https://newsapi.org/v2/top-headlines?pageSize=100&country=in&category=${category}&apiKey=${APIKey}`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${APIKey}`)
             .then((response) => {
                 setData({
                     total: response.data.totalResults,
@@ -39,7 +39,7 @@ export default function News() {
 
     return (
         <div id='news'>
-            <div id="news-center">
+            <div id="news-top">
                 <input type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={changeCategory}/>
                 <datalist id="categories">
                     <option>Business</option>

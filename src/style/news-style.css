@@ -1,24 +1,22 @@
 #news {
-    height: 92.5vh;
+    height: 100%;
     width: 100%;
     background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
     display: flex;
     flex-wrap: wrap;
 }
 
-#news-center {
-    height: 25%;
+#news-top {
     width: 100%;
-    border: 2px solid red;
 }
-#news-center input {
-    height: 20%;
+#news-top input {
+    height: 35%;
     width: 15%;
     margin-top: 4%;
     margin-left: 38%;
 }
-#news-center button {
-    height: 20%;
+#news-top button {
+    height: 35%;
     width: 5%;
     margin-top: 4%;
     margin-left: 5%;
@@ -31,6 +29,7 @@
 #news-widget {
     width: 20%;
     margin: 2.5%;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 #news-widget img {
     height: 50%;

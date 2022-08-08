@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function DownPane(props) {
+export default function BottomPane(props) {
     return (
-        <div id='movies-down'>
+        <div id='movies-bottom'>
             <h2>Genre: {props.data.genre}</h2>
             <h2>Director: {props.data.director}</h2>
             <h2>Writer: {props.data.writer}</h2>

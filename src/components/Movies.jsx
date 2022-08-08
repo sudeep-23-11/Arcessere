@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 import '../style/movies-style.css';
-import DownPane from './Movies components/DownPane';
+import BottomPane from './Movies components/BottomPane';
 import RightPane from './Movies components/RightPane';
 
 export default function Movies() {
@@ -20,7 +20,7 @@ export default function Movies() {
         plot: "", poster: "images/movies.jpg",
     });
     let clickButton = () => {
-        axios.get(`http://www.omdbapi.com/?apikey=${APIKey}&t=${movie}`)
+        axios.get(`http://www.omdbapi.com/?t=${movie}&apikey=${APIKey}`)
             .then((response) => {
                 setData({
                     genre: response.data.Genre,
@@ -44,7 +44,7 @@ export default function Movies() {
                 <input type="text" placeholder='Enter movie' autoFocus value={movie} onChange={changeMovie}/>
                 <button type="submit" onClick={clickButton}>Go</button>
             </div>
-            <DownPane data={data}/>
+            <BottomPane data={data}/>
             <RightPane data={data}/>
         </div>
     )
