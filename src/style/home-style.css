@@ -1,6 +1,6 @@
 #home {
-    height: 92.5vh;
-    width: 100%;
+    height: 92vh;
+    width: 100vw;
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     display: flex;
     flex-wrap: wrap;
