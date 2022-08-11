@@ -10,16 +10,13 @@ export default function Movies() {
     const APIKey = process.env.REACT_APP_MOVIES_API;
 
     const [movie, setMovie] = useState("");
-    let changeMovie = (event) => {
-        setMovie(event.target.value);
-    }
 
     const [data, setData] = useState({
         genre: "", director: "", writer: "", actors: "",
         releasedDate: "", runtime: "", imdb: "", rottenTomatoes: "", boxOffice: "",
         plot: "", poster: "images/movies.jpg",
     });
-    let clickButton = () => {
+    let submitHandler = () => {
         axios.get(`http://www.omdbapi.com/?t=${movie}&apikey=${APIKey}`)
             .then((response) => {
                 setData({
@@ -36,13 +33,14 @@ export default function Movies() {
                     poster: response.data.Poster,
                 })
             })
+        setMovie("");
     }
 
     return (
         <div id='movies'>
             <div id='movies-top'>
-                <input type="text" placeholder='Enter movie' autoFocus value={movie} onChange={changeMovie}/>
-                <button type="submit" onClick={clickButton}>Go</button>
+                <input type="text" placeholder='Enter movie' autoFocus value={movie} onChange={(e) => setMovie(e.target.value)}/>
+                <button type="submit" onClick={submitHandler}>Go</button>
             </div>
             <BottomPane data={data}/>
             <RightPane data={data}/>

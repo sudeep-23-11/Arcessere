@@ -10,16 +10,13 @@ export default function Weather() {
     const APIKey = process.env.REACT_APP_WEATHER_API;
     
     const [city, setCity] = useState("");
-    let changeCity = (event) => {
-        setCity(event.target.value);
-    }
     
     const [data, setData] = useState({
         latitute: "", longitute: "", description: "",
         temperature: "", pressure: "", humidity: "",
         visibility: "", windSpeed: "", clouds: "",
     });
-    let clickButton = () => {
+    let submitHandler = () => {
         axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`)
             .then((response) => {
                 setData({
@@ -34,14 +31,15 @@ export default function Weather() {
                     clouds: response.data.clouds.all,
                 })
             })
+        setCity("");
     }
 
     return (
         <div id="weather">
             <LeftPane data={data}/>
             <div id='weather-center'>
-                <input type="text" placeholder='Enter city' autoFocus value={city} onChange={changeCity}/>
-                <button type="submit" onClick={clickButton}>Go</button>
+                <input type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
+                <button type="submit" onClick={submitHandler}>Go</button>
                 <h2 id='latitute'>{data.latitute} &#176;N latitute</h2>
                 <h2 id='longitute'>{data.longitute} &#176;E longitute</h2>
                 <h2>{data.description}</h2>

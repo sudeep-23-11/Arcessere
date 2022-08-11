@@ -9,38 +9,28 @@ export default function News() {
     const APIKey = process.env.REACT_APP_NEWS_API;
     
     const [category, setCategory] = useState("");
-    let changeCategory = (event) => {
-        setCategory(event.target.value);
-    }
     
-    const [data, setData] = useState({
-        total: 0, articles: [],
-    });
+    const [data, setData] = useState([]);
     useEffect(() => {
         axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${APIKey}`)
             .then((response) => {
-                setData({
-                    total: response.data.totalResults,
-                    articles: response.data.articles,
-                })
+                setData(response.data.articles)
             })
     }, [])
-    let clickButton = () => {
+    let submitHandler = () => {
         axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${APIKey}`)
             .then((response) => {
-                setData({
-                    total: response.data.totalResults,
-                    articles: response.data.articles,
-                })
+                setData(response.data.articles)
             })
+        setCategory("");
     }
 
-    if (!data.total) return null;
+    if (!data.length) return null;
 
     return (
         <div id='news'>
             <div id="news-top">
-                <input type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={changeCategory}/>
+                <input type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={(e) => setCategory(e.target.value)}/>
                 <datalist id="categories">
                     <option>Business</option>
                     <option>Entertainment</option>
@@ -49,7 +39,7 @@ export default function News() {
                     <option>Sports</option>
                     <option>Technology</option>
                 </datalist>
-                <button type="submit" onClick={clickButton}>Go</button>
+                <button type="submit" onClick={submitHandler}>Go</button>
             </div>
             <WidgetList data={data}/>
         </div>
