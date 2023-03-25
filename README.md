@@ -1,4 +1,4 @@
-# Fetch It Baby
+# Arcessere
 An all-in-one API fetching website.
 
 ## Weather component
