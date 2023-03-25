@@ -2,6 +2,11 @@ import React from 'react'
 
 export default function Widget(props) {
 
+    if (!props.article.urlToImage)
+    props.article.urlToImage = "images/news.jpg"
+    if (!props.article.description)
+    props.article.description = "Oops! Description is not avaliable. For detailed news, click on the button below."
+
     return (
         <div className="card" id='news-widget'>
             <img src={props.article.urlToImage} className="card-img-top" alt="loading" />

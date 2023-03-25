@@ -33,11 +33,11 @@ function App() {
                 </div>
             </nav>
             <Routes>
-                <Route exact path="/" element={<Home />} />
-                <Route exact path="/Home" element={<Home />} />
-                <Route exact path="/Weather" element={<Weather />} />
-                <Route exact path="/Movies" element={<Movies />} />
-                <Route exact path="/News" element={<News />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/Home" element={<Home />} />
+                <Route path="/Weather" element={<Weather />} />
+                <Route path="/Movies" element={<Movies />} />
+                <Route path="/News" element={<News />} />
             </Routes>
         </Router>
     );
