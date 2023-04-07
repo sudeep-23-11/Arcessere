@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios';
+import axios from 'axios'
 
-import '../style/news-style.css';
-import WidgetList from './News components/WidgetList';
+import '../../style/news.css'
+import Widget from './Widget'
 
 export default function News() {
 
-    const APIKey = process.env.REACT_APP_NEWS_API;
+    const key = process.env.REACT_APP_NEWS_API_KEY
     
-    const [category, setCategory] = useState("");
-    
-    const [data, setData] = useState([]);
+    const [category, setCategory] = useState("")
+    const [data, setData] = useState([])
+
     useEffect(() => {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${APIKey}`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${key}`)
             .then((response) => {
                 setData(response.data.articles)
             })
     }, [])
     let submitHandler = () => {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${APIKey}`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${key}`)
             .then((response) => {
                 setData(response.data.articles)
             })
-        setCategory("");
+        setCategory("")
     }
-
-    if (!data.length) return null;
 
     return (
         <div id='news'>
@@ -41,7 +39,9 @@ export default function News() {
                 </datalist>
                 <button type="submit" onClick={submitHandler}>Go</button>
             </div>
-            <WidgetList data={data}/>
+            {data.map((article, id) => {
+                return <Widget key={id} article={article} />
+            })}
         </div>
     )
 }

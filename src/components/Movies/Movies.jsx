@@ -1,23 +1,23 @@
 import React, { useState } from 'react'
-import axios from 'axios';
+import axios from 'axios'
 
-import '../style/movies-style.css';
-import BottomPane from './Movies components/BottomPane';
-import RightPane from './Movies components/RightPane';
+import '../../style/movies.css'
+import BottomPane from './BottomPane'
+import RightPane from './RightPane'
 
 export default function Movies() {
 
-    const APIKey = process.env.REACT_APP_MOVIES_API;
+    const key = process.env.REACT_APP_MOVIES_API_KEY
 
-    const [movie, setMovie] = useState("");
-
+    const [movie, setMovie] = useState("")
     const [data, setData] = useState({
         genre: "", director: "", writer: "", actors: "",
         releasedDate: "", runtime: "", imdb: "", rottenTomatoes: "", boxOffice: "",
-        plot: "", poster: "images/movies.jpg",
-    });
+        plot: "", poster: "./images/movies.jpg"
+    })
+
     let submitHandler = () => {
-        axios.get(`http://www.omdbapi.com/?t=${movie}&apikey=${APIKey}`)
+        axios.get(`http://www.omdbapi.com/?t=${movie}&apikey=${key}`)
             .then((response) => {
                 setData({
                     genre: response.data.Genre,
@@ -33,7 +33,7 @@ export default function Movies() {
                     poster: response.data.Poster,
                 })
             })
-        setMovie("");
+        setMovie("")
     }
 
     return (

@@ -3,7 +3,7 @@ import React from 'react'
 export default function Widget(props) {
 
     if (!props.article.urlToImage)
-    props.article.urlToImage = "images/news.jpg"
+    props.article.urlToImage = "./images/news.jpg"
     if (!props.article.description)
     props.article.description = "Oops! Description is not avaliable. For detailed news, click on the button below."
 

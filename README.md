@@ -1,14 +1,14 @@
 # Arcessere
-An all-in-one API fetching website.
+A website for fetching APIs
 
-## Weather component
-* User can get weather conditions of any city like Temperature, Pressure, Humdity.
-* Website is using `Open Weather` API for weather details.
+## Weather
+* use `Open Weather` API
+* get weather conditions of city like Temperature, Pressure, Humdity
 
-## Movies component
-* User can get information about any movie like Actors, Ratings, Plot.
-* Website is using `OMDb` API for movie details.
+## Movies
+* use `OMDb` API
+* get information of movie like Actors, Released Date, Ratings
 
-## News component
-* User can daily update himself/herself with all kinds of news like Entertainment, Sports, Technology.
-* Website is using `News` API for news details.
+## News
+* use `News` API
+* get daily update of news like Entertainment, Sports, Technology

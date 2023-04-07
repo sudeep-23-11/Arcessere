@@ -1,21 +1,23 @@
 #home {
     height: 92vh;
     width: 100vw;
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
     display: flex;
     flex-wrap: wrap;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 }
 
 #home-widget {
     height: 100%;
     width: 33.33%;
 }
+
 #home-widget img {
     height: 70%;
     width: 90%;
     margin-top: 5%;
     margin-left: 5%;
 }
+
 #home-widget h4 {
     margin-top: 10%;
     margin-left: 5%;

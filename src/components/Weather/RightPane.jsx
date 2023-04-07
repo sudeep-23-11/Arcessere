@@ -4,9 +4,9 @@ import Widget from './Widget'
 
 export default function RightPane(props) {
 
-    let v = props.data.visibility;
-    let ws = props.data.windSpeed;
-    let c = props.data.clouds;
+    let v = props.data.visibility
+    let ws = props.data.windSpeed
+    let c = props.data.clouds
 
     return (
         <div className='weather-side'>

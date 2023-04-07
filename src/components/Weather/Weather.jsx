@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
-import axios from 'axios';
+import axios from 'axios'
 
-import '../style/weather-style.css';
-import LeftPane from './Weather components/LeftPane';
-import RightPane from './Weather components/RightPane';
+import '../../style/weather.css'
+import LeftPane from './LeftPane'
+import RightPane from './RightPane'
 
 export default function Weather() {
 
-    const APIKey = process.env.REACT_APP_WEATHER_API;
+    const key = process.env.REACT_APP_WEATHER_API_KEY
     
-    const [city, setCity] = useState("");
-    
+    const [city, setCity] = useState("")
     const [data, setData] = useState({
         latitute: "", longitute: "", description: "",
         temperature: "", pressure: "", humidity: "",
-        visibility: "", windSpeed: "", clouds: "",
-    });
+        visibility: "", windSpeed: "", clouds: ""
+    })
     let submitHandler = () => {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}`)
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
             .then((response) => {
                 setData({
                     latitute: response.data.coord.lat,
@@ -31,7 +30,7 @@ export default function Weather() {
                     clouds: response.data.clouds.all,
                 })
             })
-        setCity("");
+        setCity("")
     }
 
     return (
@@ -40,8 +39,8 @@ export default function Weather() {
             <div id='weather-center'>
                 <input type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
                 <button type="submit" onClick={submitHandler}>Go</button>
-                <h2 id='latitute'>{data.latitute} &#176;N latitute</h2>
-                <h2 id='longitute'>{data.longitute} &#176;E longitute</h2>
+                <h2 id='latitute'>{data.latitute} °N latitute</h2>
+                <h2 id='longitute'>{data.longitute} °E longitute</h2>
                 <h2>{data.description}</h2>
             </div>
             <RightPane data={data}/>

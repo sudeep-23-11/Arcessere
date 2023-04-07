@@ -1,22 +1,24 @@
 #movies {
     height: 92vh;
     width: 100vw;
-    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
 }
 
 #movies-top {
     height: 40%;
     width: 40%;
 }
+
 #movies-top input {
     height: 12%;
     width: 38%;
     margin-top: 10%;
     margin-left: 31%;
 }
+
 #movies-top button {
     height: 12%;
     width: 12%;
@@ -32,6 +34,7 @@
     height: 60%;
     width: 40%;
 }
+
 #movies-bottom h2 {
     margin-top: 5%;
     margin-left: 2.5%;
@@ -41,6 +44,7 @@
     height: 100%;
     width: 60%;
 }
+
 #movies-right img {
     height: 70%;
     width: 45%;
@@ -48,10 +52,12 @@
     margin-right: 2.5%;
     float: right;
 }
+
 #movies-right h2 {
     margin-top: 5%;
     margin-left: 2.5%;
 }
+
 #movies-right h4 {
     margin-top: 15%;
     margin-left: 2.5%;
