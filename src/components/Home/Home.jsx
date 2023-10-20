@@ -1,6 +1,5 @@
 import React from 'react'
 
-import '../../style/home.css'
 import Widget from './Widget'
 
 export default function Home() {
@@ -10,10 +9,10 @@ export default function Home() {
     const n = "Get daily update of news like Entertainment, Sports, Technology"
 
     return (
-        <div id='home'>
-            <Widget image="./images/weather.jpg" color="#0D6EFD" caption={w}/>
-            <Widget image="./images/movies.jpg" color="#DC3545" caption={m}/>
-            <Widget image="./images/news.jpg" color="#198754" caption={n}/>
+        <div className='container-fluid d-flex flex-row align-items-center' style={{height: "100vh", backgroundColor: ""}}>
+            <Widget image="./images/weather.jpg" color="primary" caption={w}/>
+            <Widget image="./images/movies.jpg" color="danger" caption={m}/>
+            <Widget image="./images/news.jpg" color="success" caption={n}/>
         </div>
     )
 }
