@@ -1,5 +1,5 @@
 # Arcessere
-* A website for fetching APIs
+* A responsive website for fetching APIs
 * Run "bash setup.sh" command on linux terminal to start
 
 ## Weather
