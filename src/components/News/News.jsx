@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 
-import '../../style/news.css'
 import Widget from './Widget'
 
 export default function News() {
@@ -12,23 +10,31 @@ export default function News() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${key}`)
-            .then((response) => {
-                setData(response.data.articles)
+        fetch(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${key}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setData(data.articles);
             })
-    }, [])
+            .catch((error) => {
+                console.error('fetching data error:', error);
+            });
+    }, [key])
     let submitHandler = () => {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${key}`)
-            .then((response) => {
-                setData(response.data.articles)
+        fetch(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${key}`)
+            .then((response) => response.json())
+            .then((data) => {
+                setData(data.articles);
             })
+            .catch((error) => {
+                console.error('fetching data error:', error);
+            });
         setCategory("")
     }
 
     return (
-        <div id='news'>
-            <div id="news-top">
-                <input type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={(e) => setCategory(e.target.value)}/>
+        <div className='container-fluid d-flex flex-column' style={{backgroundColor: "#D0E7D2"}}>
+            <div className='container text-center mb-5' style={{marginTop: "7.5%"}}>
+                <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={(e) => setCategory(e.target.value)}/>
                 <datalist id="categories">
                     <option>Business</option>
                     <option>Entertainment</option>
@@ -37,11 +43,13 @@ export default function News() {
                     <option>Sports</option>
                     <option>Technology</option>
                 </datalist>
-                <button type="submit" onClick={submitHandler}>Go</button>
+                <button className='btn text-light' type="submit" style={{backgroundColor: "#618264"}} onClick={submitHandler}>Go</button>
             </div>
-            {data.map((article, id) => {
-                return <Widget key={id} article={article} />
-            })}
+            <div className="container d-flex flex-row flex-wrap justify-content-between">
+                {data.map((e, id) => {
+                    return <Widget key={id} article={e} />
+                })}
+            </div>
         </div>
     )
 }
