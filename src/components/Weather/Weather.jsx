@@ -40,7 +40,7 @@ export default function Weather() {
                 console.error('fetching data error:', error);
             });
         setCity('');
-        };
+    }
 
     return (
         <div className='container-fluid d-flex flex-column justify-content-center' style={{height: "100vh", backgroundColor: "#B6FFFA", color: "#687EFF"}}>
