@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
-import '../../style/weather.css'
-import LeftPane from './LeftPane'
-import RightPane from './RightPane'
+import TopWidget from './TopWidget'
+import BottomWidget from './BottomWidget'
 
 export default function Weather() {
 
@@ -11,39 +9,53 @@ export default function Weather() {
     
     const [city, setCity] = useState("")
     const [data, setData] = useState({
-        latitute: "", longitute: "", description: "",
-        temperature: "", pressure: "", humidity: "",
-        visibility: "", windSpeed: "", clouds: ""
+        latitute: {key: "Latitute", value: "", unit: "°N latitute"},
+        longitute: {key: "Longitute", value: "", unit: "°E longitute"},
+        description: {key: "Description", value: "climate", unit: ""},
+        temperature: {key: "Temperature", value: "", unit: "K"},
+        pressure: {key: "Pressure", value: "", unit: "pascal"},
+        humidity: {key: "Humidity", value: "", unit: "g/kg"},
+        visibility: {key: "Visibility", value: "", unit: "metres"},
+        windSpeed: {key: "Wind Speed", value: "", unit: "km/hour"},
+        clouds: {key: "Clouds", value: "", unit: "oktas"}
     })
+
     let submitHandler = () => {
-        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
-            .then((response) => {
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+            .then((response) => response.json())
+            .then((data) => {
                 setData({
-                    latitute: response.data.coord.lat,
-                    longitute: response.data.coord.lon,
-                    description: response.data.weather[0].description,
-                    temperature: response.data.main.temp,
-                    pressure: response.data.main.pressure,
-                    humidity: response.data.main.humidity,
-                    visibility: response.data.visibility,
-                    windSpeed: response.data.wind.speed,
-                    clouds: response.data.clouds.all,
-                })
+                    latitute: {key: "Latitute", value: data.coord.lat, unit: "°N latitute"},
+                    longitute: {key: "Longitute", value: data.coord.lon, unit: "°E longitute"},
+                    description: {key: "Description", value: data.weather[0].description, unit: ""},
+                    temperature: {key: "Temperature", value: data.main.temp, unit: "K"},
+                    pressure: {key: "Pressure", value: data.main.pressure, unit: "pascal"},
+                    humidity: {key: "Humidity", value: data.main.humidity, unit: "g/kg"},
+                    visibility: {key: "Visibility", value: data.visibility, unit: "metres"},
+                    windSpeed: {key: "Wind Speed", value: data.wind.speed, unit: "km/hour"},
+                    clouds: {key: "Clouds", value: data.clouds.all, unit: "oktas"}
+                });
             })
-        setCity("")
-    }
+            .catch((error) => {
+                console.error('fetching data error:', error);
+            });
+        setCity('');
+        };
 
     return (
-        <div id="weather">
-            <LeftPane data={data}/>
-            <div id='weather-center'>
-                <input type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
-                <button type="submit" onClick={submitHandler}>Go</button>
-                <h2 id='latitute'>{data.latitute} °N latitute</h2>
-                <h2 id='longitute'>{data.longitute} °E longitute</h2>
-                <h2>{data.description}</h2>
+        <div className='container-fluid d-flex flex-column justify-content-center' style={{height: "100vh", backgroundColor: "#B6FFFA", color: "#687EFF"}}>
+            <div className="container d-flex flex-row mb-5">
+                <TopWidget list={[data.description]}/>
+                <TopWidget list={[data.latitute, data.longitute]}/>
             </div>
-            <RightPane data={data}/>
+            <div className="container text-center mb-5">
+                <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
+                <button className='btn text-light' type="submit" style={{backgroundColor: "#687EFF"}} onClick={submitHandler}>Go</button>
+            </div>
+            <div className="container d-flex flex-row">
+                <BottomWidget list={[data.temperature, data.pressure, data.humidity]}/>
+                <BottomWidget list={[data.visibility, data.windSpeed, data.clouds]}/>
+            </div>
         </div>
     )
 }

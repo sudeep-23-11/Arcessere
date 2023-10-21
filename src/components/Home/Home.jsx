@@ -9,7 +9,7 @@ export default function Home() {
     const n = "Get daily update of news like Entertainment, Sports, Technology"
 
     return (
-        <div className='container-fluid d-flex flex-row align-items-center' style={{height: "100vh", backgroundColor: ""}}>
+        <div className='container-fluid d-flex flex-row align-items-center' style={{height: "100vh", backgroundColor: "#F1EFEF"}}>
             <Widget image="./images/weather.jpg" color="primary" caption={w}/>
             <Widget image="./images/movies.jpg" color="danger" caption={m}/>
             <Widget image="./images/news.jpg" color="success" caption={n}/>
