@@ -45,15 +45,19 @@ export default function Movies() {
         setMovie("")
     }
 
+    const mq=window.matchMedia('(min-width: 992px)').matches;
+
     return (
-        <div className="container-fluid d-flex flex-row" style={{height: "100vh", backgroundColor: "#E95793", color: "#610C9F"}}>
-            <div className="container d-flex flex-column justify-content-center align-items-center text-center">
+        <div className="container-fluid d-flex flex-column flex-lg-row align-items-lg-center" style={{minHeight: "100vh", backgroundColor: "#E95793", color: "#610C9F"}}>
+            <div className="container text-center" style={{marginTop: mq?"0%":"15%", marginBottom: mq?"0%":"5%"}}>
                 <img className='h-50 w-50 mb-5' src={`${data.poster.value}`} alt="loading" />
                 <h5>{`${data.plot.value}`}</h5>
             </div>
-            <div className="container d-flex flex-column justify-content-center align-items-center">
-                <input className='mb-3' type="text" placeholder='Enter movie' autoFocus value={movie} onChange={(e) => setMovie(e.target.value)}/>
-                <button className='btn text-light mb-5' type="submit" style={{background: "#610C9F"}} onClick={submitHandler}>Go</button>
+            <div className="container d-flex flex-column">
+                <div className="container text-center mb-5">
+                    <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter movie' autoFocus value={movie} onChange={(e) => setMovie(e.target.value)}/>
+                    <button className='btn text-light' type="submit" style={{background: "#610C9F"}} onClick={submitHandler}>Go</button>
+                </div>
                 <Widget list={[data.genre, data.actors, data.director, data.writer, data.releasedDate, data.runtime, data.boxOffice, data.imdb, data.rottenTomatoes]}/>
             </div>
         </div>

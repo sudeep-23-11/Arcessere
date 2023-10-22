@@ -31,9 +31,11 @@ export default function News() {
         setCategory("")
     }
 
+    const mq=window.matchMedia('(min-width: 768px)').matches;
+
     return (
         <div className='container-fluid d-flex flex-column' style={{backgroundColor: "#D0E7D2"}}>
-            <div className='container text-center mb-5' style={{marginTop: "7.5%"}}>
+            <div className='container text-center mb-5' style={{marginTop: mq?"10%":"20%"}}>
                 <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={(e) => setCategory(e.target.value)}/>
                 <datalist id="categories">
                     <option>Business</option>
@@ -45,7 +47,7 @@ export default function News() {
                 </datalist>
                 <button className='btn text-light' type="submit" style={{backgroundColor: "#618264"}} onClick={submitHandler}>Go</button>
             </div>
-            <div className="container d-flex flex-row flex-wrap justify-content-between">
+            <div className="container d-flex flex-row flex-wrap justify-content-around">
                 {data.map((e, id) => {
                     return <Widget key={id} article={e} />
                 })}

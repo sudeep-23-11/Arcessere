@@ -42,9 +42,11 @@ export default function Weather() {
         setCity('');
     }
 
+    const mq=window.matchMedia('(min-width: 768px)').matches;
+
     return (
-        <div className='container-fluid d-flex flex-column justify-content-center' style={{height: "100vh", backgroundColor: "#B6FFFA", color: "#687EFF"}}>
-            <div className="container d-flex flex-row mb-5">
+        <div className='container-fluid d-flex flex-column' style={{minHeight: "100vh", backgroundColor: "#B6FFFA", color: "#687EFF"}}>
+            <div className="container d-flex flex-column flex-md-row" style={{marginTop: mq?"10%":"20%"}}>
                 <TopWidget list={[data.description]}/>
                 <TopWidget list={[data.latitute, data.longitute]}/>
             </div>
@@ -52,7 +54,7 @@ export default function Weather() {
                 <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
                 <button className='btn text-light' type="submit" style={{backgroundColor: "#687EFF"}} onClick={submitHandler}>Go</button>
             </div>
-            <div className="container d-flex flex-row">
+            <div className="container d-flex flex-column flex-md-row">
                 <BottomWidget list={[data.temperature, data.pressure, data.humidity]}/>
                 <BottomWidget list={[data.visibility, data.windSpeed, data.clouds]}/>
             </div>
