@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 import TopWidget from './TopWidget'
 import BottomWidget from './BottomWidget'
@@ -21,28 +22,27 @@ export default function Weather() {
     })
 
     let submitHandler = () => {
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setData({
-                    latitute: {key: "Latitute", value: data.coord.lat, unit: "°N latitute"},
-                    longitute: {key: "Longitute", value: data.coord.lon, unit: "°E longitute"},
-                    description: {key: "Description", value: data.weather[0].description, unit: ""},
-                    temperature: {key: "Temperature", value: data.main.temp, unit: "K"},
-                    pressure: {key: "Pressure", value: data.main.pressure, unit: "pascal"},
-                    humidity: {key: "Humidity", value: data.main.humidity, unit: "g/kg"},
-                    visibility: {key: "Visibility", value: data.visibility, unit: "metres"},
-                    windSpeed: {key: "Wind Speed", value: data.wind.speed, unit: "km/hour"},
-                    clouds: {key: "Clouds", value: data.clouds.all, unit: "oktas"}
-                });
-            })
-            .catch((error) => {
-                console.error('fetching data error:', error);
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+        .then((response) => {
+            setData({
+                latitute: {key: "Latitute", value: response.data.coord.lat, unit: "°N latitute"},
+                longitute: {key: "Longitute", value: response.data.coord.lon, unit: "°E longitute"},
+                description: {key: "Description", value: response.data.weather[0].description, unit: ""},
+                temperature: {key: "Temperature", value: response.data.main.temp, unit: "K"},
+                pressure: {key: "Pressure", value: response.data.main.pressure, unit: "pascal"},
+                humidity: {key: "Humidity", value: response.data.main.humidity, unit: "g/kg"},
+                visibility: {key: "Visibility", value: response.data.visibility, unit: "metres"},
+                windSpeed: {key: "Wind Speed", value: response.data.wind.speed, unit: "km/hour"},
+                clouds: {key: "Clouds", value: response.data.clouds.all, unit: "oktas"}
             });
-        setCity('');
+        })
+        .catch((error) => {
+            console.log("Error in getting data\n", error)
+        })
+        setCity("");
     }
 
-    const mq=window.matchMedia('(min-width: 768px)').matches;
+    const mq = window.matchMedia('(min-width: 768px)').matches;
 
     return (
         <div className='container-fluid d-flex flex-column' style={{minHeight: "100vh", backgroundColor: "#B6FFFA", color: "#687EFF"}}>
@@ -51,7 +51,7 @@ export default function Weather() {
                 <TopWidget list={[data.latitute, data.longitute]}/>
             </div>
             <div className="container text-center mb-5">
-                <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
+                <input className='d-block rounded ms-auto me-auto mb-3' type="text" placeholder='Enter city' autoFocus value={city} onChange={(e) => setCity(e.target.value)}/>
                 <button className='btn text-light' type="submit" style={{backgroundColor: "#687EFF"}} onClick={submitHandler}>Go</button>
             </div>
             <div className="container d-flex flex-column flex-md-row">

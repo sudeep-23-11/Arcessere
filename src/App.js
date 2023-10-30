@@ -16,18 +16,10 @@ function App() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-lg-0 me-5 gap-2">
-                            <li className="nav-item">
-                                <Link className="nav-link text-dark" aria-current="page" to="/Home">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-dark" to="/Weather">Weather</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-dark" to="/Movies">Movies</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link text-dark" to="/News">News</Link>
-                            </li>
+                            <li className="nav-item"><Link className="nav-link text-dark" to="/Home">Home</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-dark" to="/Weather">Weather</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-dark" to="/Movies">Movies</Link></li>
+                            <li className="nav-item"><Link className="nav-link text-dark" to="/News">News</Link></li>
                         </ul>
                     </div>
                 </div>

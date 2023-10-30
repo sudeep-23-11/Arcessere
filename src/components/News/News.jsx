@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 import Widget from './Widget'
 
@@ -10,33 +11,31 @@ export default function News() {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${key}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setData(data.articles);
-            })
-            .catch((error) => {
-                console.error('fetching data error:', error);
-            });
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=general&pageSize=100&apiKey=${key}`)
+        .then((response) => {
+            setData(response.data.articles);
+        })
+        .catch((error) => {
+            console.log("Error in getting data\n", error)
+        })
     }, [key])
     let submitHandler = () => {
-        fetch(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${key}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setData(data.articles);
-            })
-            .catch((error) => {
-                console.error('fetching data error:', error);
-            });
+        axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=${category}&pageSize=100&apiKey=${key}`)
+        .then((response) => {
+            setData(response.data.articles);
+        })
+        .catch((error) => {
+            console.log("Error in getting data\n", error)
+        })
         setCategory("")
     }
 
-    const mq=window.matchMedia('(min-width: 768px)').matches;
+    const mq = window.matchMedia('(min-width: 768px)').matches;
 
     return (
         <div className='container-fluid d-flex flex-column' style={{backgroundColor: "#D0E7D2"}}>
             <div className='container text-center mb-5' style={{marginTop: mq?"10%":"20%"}}>
-                <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={(e) => setCategory(e.target.value)}/>
+                <input className='d-block rounded ms-auto me-auto mb-3' type="text" placeholder='Enter category' list='categories' autoFocus value={category} onChange={(e) => setCategory(e.target.value)}/>
                 <datalist id="categories">
                     <option>Business</option>
                     <option>Entertainment</option>

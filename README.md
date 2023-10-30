@@ -1,6 +1,6 @@
 # Arcessere
 * A responsive website for fetching APIs
-* Run "bash setup.sh" command on linux terminal to start
+* Run setup.sh file to launch
 
 ## Weather
 * use `Open Weather` API

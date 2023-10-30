@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 
 import Widget from './Widget'
 
@@ -22,41 +23,40 @@ export default function Movies() {
     })
 
     let submitHandler = () => {
-        fetch(`http://www.omdbapi.com/?t=${movie}&apikey=${key}`)
-            .then((response) => response.json())
-            .then((data) => {
-                setData({
-                    poster: {key: "Poster", value: data.Poster},
-                    plot: {key: "Plot", value: data.Plot},
-                    genre: {key: "Genre", value: data.Genre},
-                    actors: {key: "Actors", value: data.Actors},
-                    director: {key: "Director", value: data.Director},
-                    writer: {key: "Writer", value: data.Writer},
-                    releasedDate: {key: "Released Date", value: data.Released},
-                    runtime: {key: "Runtime", value: data.Runtime},
-                    boxOffice: {key: "Box Office Collection", value: data.BoxOffice},
-                    imdb: {key: "Imdb Rating", value: data.Ratings[0].Value},
-                    rottenTomatoes: {key: "Rotten Tomatoes Rating", value: data.Ratings[1].Value}
-                });
-            })
-            .catch((error) => {
-                console.error('fetching data error:', error);
+        axios.get(`http://www.omdbapi.com/?t=${movie}&apikey=${key}`)
+        .then((response) => {
+            setData({
+                poster: {key: "Poster", value: response.data.Poster},
+                plot: {key: "Plot", value: response.data.Plot},
+                genre: {key: "Genre", value: response.data.Genre},
+                actors: {key: "Actors", value: response.data.Actors},
+                director: {key: "Director", value: response.data.Director},
+                writer: {key: "Writer", value: response.data.Writer},
+                releasedDate: {key: "Released Date", value: response.data.Released},
+                runtime: {key: "Runtime", value: response.data.Runtime},
+                boxOffice: {key: "Box Office Collection", value: response.data.BoxOffice},
+                imdb: {key: "Imdb Rating", value: response.data.Ratings[0].Value},
+                rottenTomatoes: {key: "Rotten Tomatoes Rating", value: response.data.Ratings[1].Value}
             });
+        })
+        .catch((error) => {
+            console.log("Error in getting data\n", error)
+        })
         setMovie("")
     }
 
-    const mq=window.matchMedia('(min-width: 992px)').matches;
+    const mq = window.matchMedia('(min-width: 992px)').matches;
 
     return (
-        <div className="container-fluid d-flex flex-column flex-lg-row align-items-lg-center" style={{minHeight: "100vh", backgroundColor: "#E95793", color: "#610C9F"}}>
+        <div className="container-fluid d-flex flex-column flex-lg-row align-items-lg-center" style={{minHeight: "100vh", backgroundColor: "#FCAEAE", color: "#FE0000"}}>
             <div className="container text-center" style={{marginTop: mq?"0%":"15%", marginBottom: mq?"0%":"5%"}}>
                 <img className='h-50 w-50 mb-5' src={`${data.poster.value}`} alt="loading" />
                 <h5>{`${data.plot.value}`}</h5>
             </div>
             <div className="container d-flex flex-column">
                 <div className="container text-center mb-5">
-                    <input className='d-block ms-auto me-auto mb-3' type="text" placeholder='Enter movie' autoFocus value={movie} onChange={(e) => setMovie(e.target.value)}/>
-                    <button className='btn text-light' type="submit" style={{background: "#610C9F"}} onClick={submitHandler}>Go</button>
+                    <input className='d-block rounded ms-auto me-auto mb-3' type="text" placeholder='Enter movie' autoFocus value={movie} onChange={(e) => setMovie(e.target.value)}/>
+                    <button className='btn text-light' type="submit" style={{background: "#FE0000"}} onClick={submitHandler}>Go</button>
                 </div>
                 <Widget list={[data.genre, data.actors, data.director, data.writer, data.releasedDate, data.runtime, data.boxOffice, data.imdb, data.rottenTomatoes]}/>
             </div>

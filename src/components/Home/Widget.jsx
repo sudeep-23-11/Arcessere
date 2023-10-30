@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Widget(props) {
 
-    const mq=window.matchMedia('(min-width: 992px)').matches;
+    const mq = window.matchMedia('(min-width: 992px)').matches;
 
     return (
         <div className='container text-center' style={{marginTop: mq?"0%":"15%"}}>
