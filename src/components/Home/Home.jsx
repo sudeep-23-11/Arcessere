@@ -11,7 +11,7 @@ export default function Home() {
     return (
         <div className='container-fluid d-flex flex-column flex-lg-row align-items-lg-center' style={{minHeight: "100vh", backgroundColor: "#F1EFEF"}}>
             <Widget image="./images/weather.jpg" color="#687EFF" caption={w}/>
-            <Widget image="./images/movies.jpg" color="#FE0000" caption={m}/>
+            <Widget image="./images/movie.jpg" color="#FE0000" caption={m}/>
             <Widget image="./images/news.jpg" color="#618264" caption={n}/>
         </div>
     )

@@ -9,7 +9,7 @@ export default function Movies() {
 
     const [movie, setMovie] = useState("")
     const [data, setData] = useState({
-        poster: {key: "Poster", value: "./images/movies.jpg"},
+        poster: {key: "Poster", value: "./images/movie.jpg"},
         plot: {key: "Plot", value: "plot"},
         genre: {key: "Genre", value: ""},
         actors: {key: "Actors", value: ""},
@@ -23,7 +23,7 @@ export default function Movies() {
     })
 
     let submitHandler = () => {
-        axios.get(`http://www.omdbapi.com/?t=${movie}&apikey=${key}`)
+        axios.get(`https://www.omdbapi.com/?t=${movie}&apikey=${key}`)
         .then((response) => {
             setData({
                 poster: {key: "Poster", value: response.data.Poster},
@@ -49,7 +49,7 @@ export default function Movies() {
 
     return (
         <div className="container-fluid d-flex flex-column flex-lg-row align-items-lg-center" style={{minHeight: "100vh", backgroundColor: "#FCAEAE", color: "#FE0000"}}>
-            <div className="container text-center" style={{marginTop: mq?"0%":"15%", marginBottom: mq?"0%":"5%"}}>
+            <div className="container text-center" style={{marginTop: mq?"2.5%":"15%", marginBottom: mq?"0%":"5%"}}>
                 <img className='h-50 w-50 mb-5' src={`${data.poster.value}`} alt="loading" />
                 <h5>{`${data.plot.value}`}</h5>
             </div>
